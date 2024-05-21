@@ -8,8 +8,6 @@ DEFAULT_BUILD_OPTS = {
     "ccache": "on",
     "root7": "on",
     "uring": "on",
-    "testing": "on",
-    "dev": "on",
     "roofit": "off",
     "tmva": "off",
     "clad": "off",
