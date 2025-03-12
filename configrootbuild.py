@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 import argparse
-from os import path, mkdir, chdir, system
+from os import path, mkdir, chdir, system, getcwd
 
 ROOT_BASE_DIR = path.expanduser("~/cern/root")
 DEFAULT_BUILD_OPTS = {
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         "-b",
         "--build-dir",
         help="build directory",
-        default=f"{ROOT_BASE_DIR}/build",
+        default=f"current directory ({getcwd()})",
     )
 
     parser.add_argument(
