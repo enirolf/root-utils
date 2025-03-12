@@ -61,8 +61,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "-b",
         "--build-dir",
-        help="build directory",
-        default=f"current directory ({getcwd()})",
+        help="build directory. Uses the current working directory by default.",
+        default=f"{getcwd()}",
     )
 
     parser.add_argument(
@@ -100,7 +100,11 @@ if __name__ == "__main__":
         )
     )
 
-    cmake_string = f"cmake -G Ninja -DCMAKE_BUILD_TYPE={args.build_type} -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_INSTALL_PREFIX={args.install_dir} {build_opt_string} -Dtesting={args.testing} {args.source_dir}"
+    cmake_string = f"cmake -G Ninja -DCMAKE_BUILD_TYPE={args.build_type} " \
+                    "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang " \
+                    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON " \
+                    "-DCMAKE_INSTALL_PREFIX={args.install_dir} {build_opt_string} " \
+                    "-Dtesting={args.testing} {args.source_dir}"
 
     print(f'Configuring CMake in "{args.build_dir}"')
     print(cmake_string)
