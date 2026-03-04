@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 import argparse
-from os import path, mkdir, chdir, system, getcwd
+from os import chdir, getcwd, mkdir, path, system
 
 ROOT_BASE_DIR = path.expanduser("~/cern/root")
 DEFAULT_BUILD_OPTS = {
@@ -17,6 +17,13 @@ DEFAULT_BUILD_OPTS = {
     "gdml": "off",
     "proof": "off",
     "mathmore": "on",
+    "tpython": "off",
+    "asimage_tiff": "off",
+    "builtin_gl2ps": "off",
+    "builtin_civetweb": "off",
+    "fitsio": "off",
+    "geom": "off",
+    "use_gsl_cblas": "off",
 }
 
 
@@ -100,11 +107,13 @@ if __name__ == "__main__":
         )
     )
 
-    cmake_string = f"cmake -G Ninja -DCMAKE_BUILD_TYPE={args.build_type} " \
-                    f"-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang " \
-                    f"-DCMAKE_EXPORT_COMPILE_COMMANDS=on " \
-                    f"-DCMAKE_INSTALL_PREFIX={args.install_dir} {build_opt_string} " \
-                    f"-Dtesting={args.testing} {args.source_dir}"
+    cmake_string = (
+        f"cmake -G Ninja -DCMAKE_BUILD_TYPE={args.build_type} "
+        f"-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang "
+        f"-DCMAKE_EXPORT_COMPILE_COMMANDS=on "
+        f"-DCMAKE_INSTALL_PREFIX={args.install_dir} {build_opt_string} "
+        f"-Dtesting={args.testing} {args.source_dir}"
+    )
 
     print(f'Configuring CMake in "{args.build_dir}"')
     print(cmake_string)
