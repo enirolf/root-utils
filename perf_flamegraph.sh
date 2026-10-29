@@ -32,7 +32,7 @@ if [[ -z ${EXECUTABLE} ]]; then
 fi
 
 echo -e "${C}running perf record...${NC}"
-perf record -o ${RECORD_OUTPUT} -F 99 --call-graph=fp -- ${EXECUTABLE}
+perf record -o ${RECORD_OUTPUT} -F 99 -g --call-graph=fp -- ${EXECUTABLE}
 
 echo -e "${C}results saved to ${CU}${RECORD_OUTPUT}${NC}"
 
